@@ -129,6 +129,8 @@ Ollama is a tool for running large language models locally on your machine. This
 #### Path Issues (Windows)
 - Confirm that the Ollama directory is added to your system PATH.
 
+## UNDER DEVELOPMENT PLEASE STAY TUNED!
+
 ---
 
 This guide provides detailed instructions for installing and running Ollama across different platforms. If you encounter any issues, consult the troubleshooting section or refer to the [Ollama documentation](https://ollama.com).
