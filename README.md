@@ -14,21 +14,23 @@ Ollama is a tool for running large language models locally on your machine. This
 #### macOS
 
 1. **Install Homebrew**:
+   ```
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    Confirm installation:
    brew --version
+   ```
 
-2. **Install Ollama**:
-   brew install ollama
+3. **Install Ollama**:
+   `brew install ollama`
 
-3. **Verify Installation**:
-   ollama --version
+4. **Verify Installation**:
+   `ollama --version`
 
-4. **Start the Ollama Service**:
-   ollama serve
+5. **Start the Ollama Service**:
+   `ollama serve`
 
-5. **Test Installation**:
-   ollama list
+6. **Test Installation**:
+   `ollama list`
 
 ---
 
@@ -47,13 +49,13 @@ Ollama is a tool for running large language models locally on your machine. This
    - Add the directory containing the `ollama.exe` file (e.g., `C:\Program Files\Ollama`).
 
 4. **Verify Installation**:
-   ollama --version
+   `ollama --version`
 
 5. **Start the Ollama Service**:
-   ollama serve
+   `ollama serve`
 
 6. **Test Installation**:
-   ollama list
+   `ollama list`
 
 ---
 
@@ -63,19 +65,19 @@ Ollama is a tool for running large language models locally on your machine. This
    Visit the [Ollama GitHub Releases Page](https://github.com/ollama/ollama/releases) and download the appropriate binary for your Linux distribution.
 
 2. **Make the Binary Executable**:
-   chmod +x ollama-linux
+   `chmod +x ollama-linux`
 
 3. **Move the Binary to a System Path**:
-   sudo mv ollama-linux /usr/local/bin/ollama
+   `sudo mv ollama-linux /usr/local/bin/ollama`
 
 4. **Verify Installation**:
-   ollama --version
+   `ollama --version`
 
 5. **Start the Ollama Service**:
-   ollama serve
+   `ollama serve`
 
 6. **Test Installation**:
-   ollama list
+   `ollama list`
 
 ---
 
@@ -83,14 +85,14 @@ Ollama is a tool for running large language models locally on your machine. This
 
 1. **Command**:
    Run the following command:
-   ollama run mixtral:8x7b
+   `ollama run mixtral:8x7b`
 
 2. **Model Download**:
    If the model (`mixtral:8x7b`) is not already downloaded, Ollama will automatically pull the required files. You will see progress logs as the model downloads.
 
 3. **Check Model Availability**:
    To confirm if the model is already available:
-   ollama list
+   `ollama list`
 
 4. **Running the Model**:
    Once downloaded, the command will execute the model locally.
@@ -105,16 +107,18 @@ Ollama is a tool for running large language models locally on your machine. This
 #### Model Not Found
 - Ensure the model name is correct (`mixtral:8x7b`).
 - Run:
-  ollama pull mixtral:8x7b
+  `ollama pull mixtral:8x7b`
 
 #### Service Not Started
 - Ensure the Ollama service is running:
-  ollama serve
+  `ollama serve`
 
 #### Permission Denied (Linux)
 - Ensure the binary is executable and moved to a directory in your PATH:
+  ```
   chmod +x ollama-linux
   sudo mv ollama-linux /usr/local/bin/ollama
+  ```
 
 #### Path Issues (Windows)
 - Confirm that the Ollama directory is added to your system PATH.
