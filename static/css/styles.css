@@ -1,0 +1,15 @@
+body {
+    padding-top: 50px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #888;
+}

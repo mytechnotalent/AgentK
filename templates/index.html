@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentK</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">AgentK</h1>
+        <form id="query-form" method="POST" action="/query">
+            <div class="form-group">
+                <label for="query">Enter your query:</label>
+                <input type="text" class="form-control" id="query" name="query" placeholder="Type your question here" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div id="response" class="mt-4"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 AgentK. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $("#query-form").on("submit", function(event) {
+            event.preventDefault();
+
+            const userQuery = $("#query").val();
+            $("#response").html("<p>Processing your query...</p>");
+
+            $.post("/query", { query: userQuery })
+                .done(function(data) {
+                    $("#response").html(`<p><strong>AgentK:</strong> ${data.response}</p>`);
+                })
+                .fail(function(err) {
+                    const errorMessage = err.responseJSON?.response || "An error occurred. Please try again.";
+                    $("#response").html(`<p class="text-danger">${errorMessage}</p>`);
+                });
+        });
+    </script>
+</body>
+</html>
