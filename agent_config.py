@@ -39,7 +39,7 @@ def configure_agent():
         ],
         llm=llm,
         verbose=True,
-        max_iterations=10,
+        max_iterations=100,
     )
 
     return agent, identity_message
