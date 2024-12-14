@@ -28,7 +28,7 @@ from llama_index.core.agent import ReActAgent
 from llama_index.core.tools import FunctionTool
 from llama_index.core import SimpleDirectoryReader
 from pdfminer.high_level import extract_text
-from tools import factorial, is_prime, document_query_tool
+from tools import document_query_tool, factorial, is_prime, search_with_duckduckgo
 
 
 def preprocess_pdfs(directory: str):
@@ -151,8 +151,18 @@ def configure_agent():
     document_tool = FunctionTool.from_defaults(fn=lambda q: document_query_tool(q, query_engine))
 
     # define additional tools
-    factorial_tool = FunctionTool.from_defaults(fn=factorial)
-    is_prime_tool = FunctionTool.from_defaults(fn=is_prime)
+    factorial_tool = FunctionTool.from_defaults(
+        fn=factorial,
+        description="Calculate the factorial of a given number."
+    )
+    is_prime_tool = FunctionTool.from_defaults(
+        fn=is_prime,
+        description="Check if a given number is a prime number."
+    )
+    duckduckgo_tool = FunctionTool.from_defaults(
+        fn=lambda query: search_with_duckduckgo(query, max_results=5),
+        description="Use DuckDuckGo to search for information on the web.",
+    )
     
     # create an identity message for the agent's persona
     identity_message = (
@@ -165,6 +175,7 @@ def configure_agent():
             document_tool,   # tool to query indexed documents
             factorial_tool,  # tool to calculate factorial
             is_prime_tool,   # tool to check if a number is prime 
+            duckduckgo_tool, # tool to search the internet
         ],
         llm=llm,             # LLM powering the agent's reasoning
         verbose=True,        # enable verbose output for debugging

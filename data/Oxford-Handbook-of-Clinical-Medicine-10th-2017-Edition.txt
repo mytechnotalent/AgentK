@@ -39525,8 +39525,6 @@ No
 
 Yes
 
-No
-
 Species
 
 P. falciparum 
@@ -39556,6 +39554,8 @@ Africa,  South  and  Central  America,
 South East Asia
 Africa
 South East Asia
+
+No
 
 Fig 9.24  P. falciparum 
 sau sage-like gam eto cytes 
