@@ -39608,10 +39608,10 @@ I
 
 2nd vector
 
-Liver
+Blood
 infection
 
-Blood
+Liver
 infection
 
 Initial

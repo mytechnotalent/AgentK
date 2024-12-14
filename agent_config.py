@@ -129,7 +129,7 @@ def configure_agent():
     validate_data_directory("./data")
 
     # initialize the language model (LLM) for processing
-    llm = Ollama(model="smollm", request_timeout=360.0)
+    llm = Ollama(model="gemma2", request_timeout=360.0)
 
     # initialize the embedding model for vector representations
     embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")

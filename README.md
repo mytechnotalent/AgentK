@@ -15,9 +15,9 @@ AgentK: The revolutionary open-source AgenticAI RAG unleashing the world’s kno
 ollama serve
 ```
 
-## Run `smollm` Model 
+## Run `gemma2` Model 
 ```
-ollama pull smollm
+ollama pull gemma2
 ```
 
 ## Install Requirements
