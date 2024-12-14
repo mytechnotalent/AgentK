@@ -24,3 +24,6 @@ pip install -r requirements.txt
 ```
 python app.py
 ```
+
+## License
+[MIT License](https://raw.githubusercontent.com/mytechnotalent/AgentK/refs/heads/main/LICENSE)
