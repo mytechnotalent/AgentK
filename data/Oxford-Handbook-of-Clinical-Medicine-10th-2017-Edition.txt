@@ -5289,10 +5289,10 @@ Maxillary vein
 Thyroid
 cartilage
 
-Internal
+External
 jugular vein
 
-External
+Internal
 jugular vein
 
 Posterior
@@ -39523,8 +39523,6 @@ tion (range)
 9–12 days
 No
 
-Yes
-
 Species
 
 P. falciparum 
@@ -39538,6 +39536,8 @@ Distribution
 
 Africa, India, South East Asia, Indonesia, 
 Oceania, Central America, Middle East
+
+Yes
 
 P. vivax
 (ﬁ g 9.25)
@@ -39608,10 +39608,10 @@ I
 
 2nd vector
 
-Blood
+Liver
 infection
 
-Liver
+Blood
 infection
 
 Initial
