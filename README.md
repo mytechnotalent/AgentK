@@ -12,6 +12,7 @@ AgentK: The revolutionary open-source AgenticAI RAG unleashing the world’s kno
 
 ## Run `mixtral:8x7b` Model
 ```
+ollama serve
 ollama run mixtral:8x7b
 ```
 
