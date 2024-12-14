@@ -39,6 +39,7 @@ def search_with_duckduckgo(query, max_results=5):
         ImportError: If the `duckduckgo_search` package is not installed.
         Exception: If an unexpected error occurs during the search process.
     """
+    
     # initialize an empty list to store search results
     results = []
     
