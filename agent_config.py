@@ -44,30 +44,40 @@ def preprocess_pdfs(directory: str):
     Returns:
         list[str]: A list of paths to the generated .txt files.
     """
+
     # initialize a list to store generated .txt file paths
     txt_files = []
 
     # iterate through files in the specified directory
     for filename in os.listdir(directory):
+
         # check if the file has a .pdf extension
         if filename.endswith(".pdf"):
+
             # construct the full file path
             pdf_path = os.path.join(directory, filename)
+
             try:
                 # extract text content from the PDF
                 extracted_text = extract_text(pdf_path)
+
                 # create a .txt file with the same base name
                 txt_file_path = os.path.splitext(pdf_path)[0] + ".txt"
+
                 # write the extracted text to the .txt file
                 with open(txt_file_path, "w", encoding="utf-8") as txt_file:
                     txt_file.write(extracted_text)
+
                 # add the .txt file path to the list
                 txt_files.append(txt_file_path)
+
                 # log the success of processing
                 print(f"Processed {filename}: Saved as {os.path.basename(txt_file_path)}")
+            
             except Exception as e:
                 # handle exceptions during processing
                 print(f"Error processing {filename}: {e}")
+    
     # return the list of generated .txt files
     return txt_files
 
@@ -111,6 +121,7 @@ def configure_agent():
             - agent (ReActAgent): The configured agent instance.
             - identity_message (str): The identity message for the agent.
     """
+
     # preprocess all PDF files in the "./data" directory
     preprocess_pdfs("./data")
     
@@ -139,7 +150,7 @@ def configure_agent():
     # define a tool for querying the indexed documents
     document_tool = FunctionTool.from_defaults(fn=lambda q: document_query_tool(q, query_engine))
 
-    # define tools for mathematical computations
+    # define additional tools
     factorial_tool = FunctionTool.from_defaults(fn=factorial)
     is_prime_tool = FunctionTool.from_defaults(fn=is_prime)
     
