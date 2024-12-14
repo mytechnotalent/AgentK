@@ -5289,10 +5289,10 @@ Maxillary vein
 Thyroid
 cartilage
 
-External
+Internal
 jugular vein
 
-Internal
+External
 jugular vein
 
 Posterior

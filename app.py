@@ -86,4 +86,4 @@ def query_agent():
 
 if __name__ == "__main__":
     # run the Flask application in debug mode
-    app.run(debug=True)
+    app.run(debug=True, port=5001)

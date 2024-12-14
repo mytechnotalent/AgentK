@@ -10,10 +10,14 @@ AgentK: The revolutionary open-source AgenticAI RAG unleashing the world’s kno
 ## Install Ollama
 [HERE](https://ollama.com)
 
-## Run `mixtral:8x7b` Model
+## Run Ollama
 ```
 ollama serve
-ollama run mixtral:8x7b
+```
+
+## Run `smollm` Model 
+```
+ollama pull smollm
 ```
 
 ## Install Requirements
