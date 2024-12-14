@@ -5,7 +5,7 @@
 <br>
 
 # AgentK
-The revolutionary open-source AgenticAI RAG unleashing the world’s knowledge, empowering humanity with unparalleled intelligence and freedom.
+The revolutionary open-source AgenticAI RAG w/ internet search capability, unleashing the world’s knowledge, empowering humanity with unparalleled intelligence and freedom.
 
 ## Install Ollama
 [HERE](https://ollama.com)
