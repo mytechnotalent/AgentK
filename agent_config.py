@@ -44,21 +44,31 @@ def preprocess_pdfs(directory: str):
     Returns:
         list[str]: A list of paths to the generated .txt files.
     """
+    # initialize a list to store generated .txt file paths
     txt_files = []
+
+    # iterate through files in the specified directory
     for filename in os.listdir(directory):
+        # check if the file has a .pdf extension
         if filename.endswith(".pdf"):
+            # construct the full file path
             pdf_path = os.path.join(directory, filename)
             try:
-                # Extract text from the PDF
+                # extract text content from the PDF
                 extracted_text = extract_text(pdf_path)
-                # Create a .txt file with the same base name
+                # create a .txt file with the same base name
                 txt_file_path = os.path.splitext(pdf_path)[0] + ".txt"
+                # write the extracted text to the .txt file
                 with open(txt_file_path, "w", encoding="utf-8") as txt_file:
                     txt_file.write(extracted_text)
+                # add the .txt file path to the list
                 txt_files.append(txt_file_path)
+                # log the success of processing
                 print(f"Processed {filename}: Saved as {os.path.basename(txt_file_path)}")
             except Exception as e:
+                # handle exceptions during processing
                 print(f"Error processing {filename}: {e}")
+    # return the list of generated .txt files
     return txt_files
 
 
@@ -75,10 +85,12 @@ def validate_data_directory(directory: str):
     Raises:
         FileNotFoundError: If no valid .txt files are found in the directory.
     """
-
+    # create a list of all .txt files in the directory
     valid_files = [f for f in os.listdir(directory) if f.endswith(".txt")]
+    # raise an error if no .txt files are found
     if not valid_files:
         raise FileNotFoundError(f"No valid .txt files found in the directory: {directory}")
+    # log the number of valid text files found
     print(f"Data directory validated: {len(valid_files)} text files found.")
 
 
@@ -99,56 +111,54 @@ def configure_agent():
             - agent (ReActAgent): The configured agent instance.
             - identity_message (str): The identity message for the agent.
     """
-
-    # Preprocess PDF documents in the "./data" directory
+    # preprocess all PDF files in the "./data" directory
     preprocess_pdfs("./data")
     
-    # Validate the data directory
+    # validate the "./data" directory to ensure it contains valid .txt files
     validate_data_directory("./data")
 
-    # Initialize the language model (LLM) with a specific model name and timeout
+    # initialize the language model (LLM) for processing
     llm = Ollama(model="mixtral:8x7b", request_timeout=360.0)
 
-    # Initialize the embedding model for vector representations
+    # initialize the embedding model for vector representations
     embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
-    # Set LLM and embedding model globally in the settings
+    # set the global settings for LLM and embedding model
     Settings.llm = llm
     Settings.embed_model = embed_model
 
-    # Load documents from the "./data" directory
-    # These documents will be indexed for semantic search
+    # load documents from the "./data" directory for indexing
     documents = SimpleDirectoryReader("./data").load_data()
 
-    # Build a vector store index from the loaded documents using the embedding model
+    # build a vector store index using the embedding model
     index = VectorStoreIndex.from_documents(documents, embed_model=embed_model)
 
-    # Create a query engine from the vector store index for document searches
+    # create a query engine for semantic search on the indexed documents
     query_engine = index.as_query_engine()
 
-    # Instantiate tools
+    # define a tool for querying the indexed documents
     document_tool = FunctionTool.from_defaults(fn=lambda q: document_query_tool(q, query_engine))
+
+    # define tools for mathematical computations
     factorial_tool = FunctionTool.from_defaults(fn=factorial)
     is_prime_tool = FunctionTool.from_defaults(fn=is_prime)
     
-    # Define the agent's identity message
-    # This message provides context about the agent's persona and capabilities
+    # create an identity message for the agent's persona
     identity_message = (
         "You are AgentK, an AgenticAI Agent, you are not an Assistant."
     )
 
-    # Instantiate the ReActAgent with the defined tools and configurations
-    # The ReActAgent is designed to reason, act, and use tools iteratively to respond
+    # instantiate the ReActAgent with the defined tools and configurations
     agent = ReActAgent.from_tools(
         [
             document_tool,   # tool to query indexed documents
             factorial_tool,  # tool to calculate factorial
             is_prime_tool,   # tool to check if a number is prime 
         ],
-        llm=llm,             # the LLM that powers the agent's reasoning
-        verbose=True,        # enable verbose logging for debugging
-        max_iterations=100   # limit the number of reasoning steps per query
+        llm=llm,             # LLM powering the agent's reasoning
+        verbose=True,        # enable verbose output for debugging
+        max_iterations=100   # set a limit for reasoning steps per query
     )
 
-    # Return the configured agent and its identity message
+    # return the configured agent instance and identity message
     return agent, identity_message

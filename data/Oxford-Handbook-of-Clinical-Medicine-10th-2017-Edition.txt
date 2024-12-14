@@ -39523,6 +39523,10 @@ tion (range)
 9–12 days
 No
 
+Yes
+
+No
+
 Species
 
 P. falciparum 
@@ -39536,8 +39540,6 @@ Distribution
 
 Africa, India, South East Asia, Indonesia, 
 Oceania, Central America, Middle East
-
-Yes
 
 P. vivax
 (ﬁ g 9.25)
@@ -39554,8 +39556,6 @@ Africa,  South  and  Central  America,
 South East Asia
 Africa
 South East Asia
-
-No
 
 Fig 9.24  P. falciparum 
 sau sage-like gam eto cytes 
